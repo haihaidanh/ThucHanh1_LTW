@@ -4,6 +4,7 @@ import { useParams, Link } from "react-router-dom";
 
 import "./styles.css";
 import fetchModel from "../../lib/fetchModelData";
+import axiosClient from "../../axios/axios";
 
 function UserDetail() {
   const [user, setUser] = useState(null);
@@ -12,9 +13,8 @@ function UserDetail() {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const response = await fetchModel(`/user/${userId}`);
-
-        setUser(response);
+        const response = await axiosClient.get(`/api/user/user/${userId}`);
+        setUser(response.data);
       } catch (e) {
         console.log(e);
       }

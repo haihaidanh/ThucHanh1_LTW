@@ -4,7 +4,7 @@
  * @param {string} url      The URL to issue the GET request.
  *
  */
-const API_URL = "http://localhost:8080";
+const API_URL = "http://localhost:8081";
 
 function fetchModel(url) {
   return fetch(API_URL + url)

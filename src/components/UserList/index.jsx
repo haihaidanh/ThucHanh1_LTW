@@ -11,19 +11,24 @@ import "./styles.css";
 import models from "../../modelData/models";
 import { Link } from "react-router-dom";
 import fetchModel from "../../lib/fetchModelData";
+import axiosClient from "../../axios/axios";
 
 /**
  * Define UserList, a React component of Project 4.
  */
-function UserList() {
+function UserList({ user }) {
+
+  if (user) {
+
+  }
 
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const data = await fetchModel('/user/list');
-        setUsers(data);
+        const data = await axiosClient.get("/api/user/user/list");
+        setUsers(data.data);
       } catch (e) {
         console.log(e);
       }
@@ -42,7 +47,7 @@ function UserList() {
               to={`/users/${item._id}`}
             >
               <ListItemText
-                primary={`${item.first_name} ${item.last_name}`}
+                primary={`${item.last_name}`}
               />
             </ListItem>
             <Divider />
